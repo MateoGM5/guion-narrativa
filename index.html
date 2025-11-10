@@ -20,41 +20,35 @@
 <!-- Introducción / objetivo -->
 <div id="inicio" class="scene active">
   <h2>Después de las 20h — Introducción</h2>
-  <p><strong>Objetivo:</strong> Julián quiere entender si puede arreglar lo que rompió con Lucía o si debe dejarla ir.</p>
-  <p>Café. Lluvia. Reloj: 20:00. Lucía entra y ve a Julián.</p>
+  <p><strong> Lucía debe volver a casa pero la lluvia la obliga a buscar refugio. Entra a un bar y ve a Julián..</p>
   <p><em>JULIÁN:</em> Lucía.<br><em>LUCÍA:</em> Hola.</p>
   <div class="opts">
-    <button onclick="show('amable')">Ser amable</button>
-    <button onclick="show('distante')">Actuar distante</button>
-    <button onclick="show('esperar')">Esperar a que hable</button>
+    <button onclick="show('amable')">Saluda con ternura</button>
+    <button onclick="show('distante')">Finge calma y frialdad</button>
+    <button onclick="show('esperar')">Espera a que hable</button>
   </div>
 </div>
 
-<!-- Ser amable -->
+<!-- Saluda con ternura -->
 <div id="amable" class="scene">
   <h2>Ser amable</h2>
-  <p>Hablan con timidez. El pasado aparece. Se acercan.</p>
+  <p>Se pusieron al día con el presente, pero el pasado aparece igual.<br>
+ “No me gustó como terminamos”, dice él. <br>
+ “A mí tampoco” respondió Lucia</p>
   <div class="opts">
-    <button onclick="show('verdad')">Decir la verdad</button>
-    <button onclick="show('broma')">Bromear</button>
-    <button onclick="back()">Volver</button>
+    <button onclick="show('sig')"> Le cuenta que nunca dejó de pensar en él</button>
+    <button onclick="show('sig')">Le pregunta si está con alguien</button>
+    <button onclick="show('sig')">Bromea para disimular la emoción</button>
   </div>
 </div>
 
-<div id="verdad" class="scene">
+<div id="sig" class="scene">
   <h2>Decir la verdad</h2>
-  <p><em>LUCÍA:</em> Nunca dejé de pensar en vos.<br><em>JULIÁN:</em> Yo tampoco.</p>
-  <p>Se toman de la mano. El café se apaga. Una voz dice: "Hora de tus pastillas".</p>
+  <p><em>LUCÍA:</em> No te olvidé, Julián. Ni un solo.<br><em>JULIÁN:</em> “Entonces no soy el único boludo.</p>
+  <p> Ambos ríen y se quedan callados cuando el mozo trae otra copa.</p>
   <div class="opts">
-    <button onclick="show('habitacion')">Continuar → Despertar</button>
-  </div>
-</div>
-
-<div id="broma" class="scene">
-  <h2>Bromear</h2>
-  <p>Se ríen para cubrir la emoción. El reloj parpadea: 20:00. El mozo parece no existir.</p>
-  <div class="opts">
-    <button onclick="show('habitacion')">Continuar → Despertar</button>
+    <button onclick="show('beso')">Lo besa</button>
+    <button onclick="show('despido')">Lo besa</button>
   </div>
 </div>
 
@@ -63,13 +57,13 @@
   <h2>Actuar distante</h2>
   <p>Lucía se mantiene fría. Julián responde con timidez.</p>
   <div class="opts">
-    <button onclick="show('cambiartema')">Cambiar de tema</button>
+    <button onclick="show('despido')">Cambiar de tema</button>
     <button onclick="show('irse')">Irse</button>
     <button onclick="back()">Volver</button>
   </div>
 </div>
 
-<div id="cambiartema" class="scene">
+<div id="despido" class="scene">
   <h2>Cambiar de tema</h2>
   <p>Hablan de cosas triviales. La voz de Julián se distorsiona. El espacio se pliega.</p>
   <div class="opts">
