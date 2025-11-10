@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Después de las 20h - Demo de linkeo</title>
+<style>
+  /* Estilo mínimo solo para legibilidad */
+  body { font-family: Arial, sans-serif; padding: 20px; background: #fff; color:#000; }
+  .scene { display: none; max-width: 700px; margin: 0 auto; }
+  .scene.active { display: block; }
+  h2 { margin-top: 0; }
+  .opts { margin-top: 12px; }
+  button { margin: 6px 6px 6px 0; padding: 8px 12px; }
+  .note { font-size: 0.9em; color: #444; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<!-- Introducción / objetivo -->
+<div id="inicio" class="scene active">
+  <h2>Después de las 20h — Introducción</h2>
+  <p><strong>Objetivo:</strong> Julián quiere entender si puede arreglar lo que rompió con Lucía o si debe dejarla ir.</p>
+  <p>Café. Lluvia. Reloj: 20:00. Lucía entra y ve a Julián.</p>
+  <p><em>JULIÁN:</em> Lucía.<br><em>LUCÍA:</em> Hola.</p>
+  <div class="opts">
+    <button onclick="show('amable')">Ser amable</button>
+    <button onclick="show('distante')">Actuar distante</button>
+    <button onclick="show('esperar')">Esperar a que hable</button>
+  </div>
+</div>
+
+<!-- Ser amable -->
+<div id="amable" class="scene">
+  <h2>Ser amable</h2>
+  <p>Hablan con timidez. El pasado aparece. Se acercan.</p>
+  <div class="opts">
+    <button onclick="show('verdad')">Decir la verdad</button>
+    <button onclick="show('broma')">Bromear</button>
+    <button onclick="back()">Volver</button>
+  </div>
+</div>
+
+<div id="verdad" class="scene">
+  <h2>Decir la verdad</h2>
+  <p><em>LUCÍA:</em> Nunca dejé de pensar en vos.<br><em>JULIÁN:</em> Yo tampoco.</p>
+  <p>Se toman de la mano. El café se apaga. Una voz dice: "Hora de tus pastillas".</p>
+  <div class="opts">
+    <button onclick="show('habitacion')">Continuar → Despertar</button>
+  </div>
+</div>
+
+<div id="broma" class="scene">
+  <h2>Bromear</h2>
+  <p>Se ríen para cubrir la emoción. El reloj parpadea: 20:00. El mozo parece no existir.</p>
+  <div class="opts">
+    <button onclick="show('habitacion')">Continuar → Despertar</button>
+  </div>
+</div>
+
+<!-- Actuar distante -->
+<div id="distante" class="scene">
+  <h2>Actuar distante</h2>
+  <p>Lucía se mantiene fría. Julián responde con timidez.</p>
+  <div class="opts">
+    <button onclick="show('cambiartema')">Cambiar de tema</button>
+    <button onclick="show('irse')">Irse</button>
+    <button onclick="back()">Volver</button>
+  </div>
+</div>
+
+<div id="cambiartema" class="scene">
+  <h2>Cambiar de tema</h2>
+  <p>Hablan de cosas triviales. La voz de Julián se distorsiona. El espacio se pliega.</p>
+  <div class="opts">
+    <button onclick="show('habitacion')">Continuar → Despertar</button>
+  </div>
+</div>
+
+<div id="irse" class="scene">
+  <h2>Irse</h2>
+  <p>Lucía deja dinero. Dice: "Cuídate". Sale bajo la lluvia.</p>
+  <div class="opts">
+    <button onclick="show('habitacion')">Continuar → Despertar</button>
+  </div>
+</div>
+
+<!-- Esperar a que hable -->
+<div id="esperar" class="scene">
+  <h2>Esperar</h2>
+  <p>Lucía guarda silencio. Julián habla sobre Sofía.</p>
+  <div class="opts">
+    <button onclick="show('culpar')">Culparlo</button>
+    <button onclick="show('escuchar')">Escuchar</button>
+    <button onclick="back()">Volver</button>
+  </div>
+</div>
+
+<div id="culpar" class="scene">
+  <h2>Culpar</h2>
+  <p><em>LUCÍA:</em> ¡Fue tu culpa!<br><em>JULIÁN:</em> No… por favor.</p>
+  <p>Las luces se apagan. Todo se vuelve negro.</p>
+  <div class="opts">
+    <button onclick="show('habitacion')">Continuar → Despertar</button>
+  </div>
+</div>
+
+<div id="escuchar" class="scene">
+  <h2>Escuchar</h2>
+  <p><em>JULIÁN:</em> Sofía tuvo un accidente viniendo a verme.<br><em>LUCÍA:</em> No te odio.</p>
+  <p>Se abrazan. El ruido del café desaparece.</p>
+  <div class="opts">
+    <button onclick="show('habitacion')">Continuar → Despertar</button>
+  </div>
+</div>
+
+<!-- Escenas adicionales que aparecen en el mapa original (opcional) -->
+<div id="pregunta" class="scene">
+  <h2>Pregunta directa</h2>
+  <p>Lucía pregunta si él extrañó alguna vez. Él responde con duda.</p>
+  <div class="opts">
+    <button onclick="show('habitacion')">Continuar → Despertar</button>
+    <button onclick="back()">Volver</button>
+  </div>
+</div>
+
+<!-- Nodo final: habitación blanca (despertar) -->
+<div id="habitacion" class="scene">
+  <h2>Habitación blanca — Despertar</h2>
+  <p>Oscuridad. Pitido. Luz blanca. Lucía abre los ojos. Está sujeta. Un chaleco la limita.</p>
+  <p>Una voz dice: "Dale, tomá tus pastillas".</p>
+  <p>Lucía ve a Julián mirándola fijamente y repitiendo su nombre.</p>
+  <div class="opts">
+    <button onclick="restart()">Reiniciar demo</button>
+  </div>
+  <p class="note">Este es el "fin real": todo lo anterior era alucinación / recuerdo.</p>
+</div>
+
+<script>
+  // Funciones mínimas para manejar escenas
+  function show(id) {
+    document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById(id);
+    if (el) el.classList.add('active');
+    window.scrollTo(0,0);
+  }
+  function back() {
+    // Volver al inicio para simplicidad; podés mejorar guardando historial
+    show('inicio');
+  }
+  function restart() {
+    show('inicio');
+  }
+</script>
+
+</body>
+</html>
