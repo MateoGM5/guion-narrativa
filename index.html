@@ -1,151 +1,158 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Después de las 20h - Demo de linkeo</title>
-<style>
-  /* Estilo mínimo solo para legibilidad */
-  body { font-family: Arial, sans-serif; padding: 20px; background: #fff; color:#000; }
-  .scene { display: none; max-width: 700px; margin: 0 auto; }
-  .scene.active { display: block; }
-  h2 { margin-top: 0; }
-  .opts { margin-top: 12px; }
-  button { margin: 6px 6px 6px 0; padding: 8px 12px; }
-  .note { font-size: 0.9em; color: #444; margin-top: 10px; }
-</style>
-</head>
+
 <body>
 
-<!-- Introducción / objetivo -->
-<div id="inicio" class="scene active">
-  <h2>Después de las 20h — Introducción</h2>
-  <p><strong> Lucía debe volver a casa pero la lluvia la obliga a buscar refugio. Entra a un bar y ve a Julián..</p>
-  <p><em>JULIÁN:</em> Lucía.<br><em>LUCÍA:</em> Hola.</p>
-  <div class="opts">
-    <button onclick="show('amable')">Saluda con ternura</button>
-    <button onclick="show('distante')">Finge calma y frialdad</button>
-    <button onclick="show('esperar')">Espera a que hable</button>
-  </div>
-</div>
+    <div id="background"></div>
 
-<!-- Saluda con ternura -->
-<div id="amable" class="scene">
-  <h2>Ser amable</h2>
-  <p>Se pusieron al día con el presente, pero el pasado aparece igual.<br>
- “No me gustó como terminamos”, dice él. <br>
- “A mí tampoco” respondió Lucia</p>
-  <div class="opts">
-    <button onclick="show('sig')"> Le cuenta que nunca dejó de pensar en él</button>
-    <button onclick="show('sig')">Le pregunta si está con alguien</button>
-    <button onclick="show('sig')">Bromea para disimular la emoción</button>
-  </div>
-</div>
+    <div id="game-wrapper">
+        
+        <div id="inicio" class="scene active" data-bg="url('imagenes/bg-bar-lluvia.jpg')">
+            <div class="text-box">
+                <p class="story-text">Lucía debe volver a casa pero la lluvia la obliga a buscar refugio. Entra a un bar y ve a Julián.</p>
+                <p class="story-text">**JULIÁN:** Lucía.</p>
+                <p class="story-text">**LUCÍA:** Hola.</p>
+                <div class="choices-container">
+                    <a href="#ternura" class="choice-button" onclick="goToScene('ternura')">Saluda con ternura</a>
+                    <a href="#frialdad" class="choice-button" onclick="goToScene('frialdad')">Finge calma y frialdad</a>
+                    <a href="#silencio" class="choice-button" onclick="goToScene('silencio')">Espera a que hable</a>
+                </div>
+            </div>
+        </div>
 
-<div id="sig" class="scene">
-  <h2>Decir la verdad</h2>
-  <p><em>LUCÍA:</em> No te olvidé, Julián. Ni un solo.<br><em>JULIÁN:</em> “Entonces no soy el único boludo.</p>
-  <p> Ambos ríen y se quedan callados cuando el mozo trae otra copa.</p>
-  <div class="opts">
-    <button onclick="show('beso')">Lo besa</button>
-    <button onclick="show('despido')">Lo besa</button>
-  </div>
-</div>
+        <div id="ternura" class="scene" data-bg="url('imagenes/bg-conversacion-acercamiento.jpg')">
+            <div class="text-box">
+                <p class="story-text">Se pusieron al día con el presente, pero el pasado aparece igual.</p>
+                <p class="story-text">“No me gustó como terminamos”, dice él.</p>
+                <p class="story-text">“A mí tampoco” respondió Lucía.</p>
+                <div class="choices-container">
+                    <a href="#convo" class="choice-button" onclick="goToScene('convo')">Le cuenta que nunca dejó de pensar en él</a>
+                    <a href="#convo" class="choice-button" onclick="goToScene('convo')">Le pregunta si está con alguien</a>
+                    <a href="#convo" class="choice-button" onclick="goToScene('convo')">Bromea para disimular la emoción</a>
+                </div>
+            </div>
+        </div>
+        
+        <div id="frialdad" class="scene" data-bg="url('imagenes/bg-incomodidad.jpg')">
+            <div class="text-box">
+                <p class="story-text">Ríen de manera incómoda.</p>
+                <p class="story-text">“¿Seguís tocando?” le pregunta a Julián</p>
+                <p class="story-text">“Sí, cada tanto. Solo para mí”</p>
+                <div class="choices-container">
+                    <a href="#retirar" class="choice-button" onclick="goToScene('retirar')">Se va antes que el silencio se vuelva incómodo</a>
+                    <a href="#recuerdo" class="choice-button" onclick="goToScene('recuerdo')">Le pregunta si alguna vez la extrañó</a>
+                </div>
+            </div>
+        </div>
 
-<!-- Actuar distante -->
-<div id="distante" class="scene">
-  <h2>Actuar distante</h2>
-  <p>Lucía se mantiene fría. Julián responde con timidez.</p>
-  <div class="opts">
-    <button onclick="show('despido')">Cambiar de tema</button>
-    <button onclick="show('irse')">Irse</button>
-    <button onclick="back()">Volver</button>
-  </div>
-</div>
+        <div id="silencio" class="scene" data-bg="url('imagenes/bg-miradas.jpg')">
+            <div class="text-box">
+                <p class="story-text">Lucía guarda silencio. Él se sienta frente a ella sin pedir permiso.</p>
+                <p class="story-text">“Hay algo que debo decirte... sobre Sofía, tu hermana”</p>
+                <div class="choices-container">
+                    <a href="#interrumpir" class="choice-button" onclick="goToScene('interrumpir')">Lo interrumpe</a>
+                    <a href="#hablar" class="choice-button" onclick="goToScene('hablar')">Lo deja hablar</a>
+                </div>
+            </div>
+        </div>
 
-<div id="despido" class="scene">
-  <h2>Cambiar de tema</h2>
-  <p>Hablan de cosas triviales. La voz de Julián se distorsiona. El espacio se pliega.</p>
-  <div class="opts">
-    <button onclick="show('habitacion')">Continuar → Despertar</button>
-  </div>
-</div>
+        <div id="convo" class="scene" data-bg="url('imagenes/bg-copa.jpg')">
+            <div class="text-box">
+                <p class="story-text">“No te olvidé, Julián. Ni un solo”</p>
+                <p class="story-text">Él la mira diciendo: “Entonces no soy el único boludo”</p>
+                <p class="story-text">Ambos ríen y se quedan callados cuando el mozo trae otra copa.</p>
+                <p class="story-text">Julian tomando su mano: “¿Y si no lo arruinamos esta vez?”</p>
+                <div class="choices-container">
+                    <a href="#beso" class="choice-button" onclick="goToScene('beso')">Lo besa</a>
+                    <a href="#retirar" class="choice-button" onclick="goToScene('retirar')">Le indica que no está lista</a>
+                </div>
+            </div>
+        </div>
 
-<div id="irse" class="scene">
-  <h2>Irse</h2>
-  <p>Lucía deja dinero. Dice: "Cuídate". Sale bajo la lluvia.</p>
-  <div class="opts">
-    <button onclick="show('habitacion')">Continuar → Despertar</button>
-  </div>
-</div>
+        <div id="beso" class="scene" data-bg="url('imagenes/bg-autobus-lluvia.jpg')">
+            <div class="text-box">
+                <p class="story-text">Afuera, el colectivo pasa levantando agua.</p>
+                <p class="story-text">“No sé a donde va esto” - dice él - “pero esta vez, no me bajo antes de la parada”</p>
+                <div class="choices-container">
+                    <a href="#semifinal" class="choice-button" onclick="goToScene('semifinal')">Continuar</a>
+                </div>
+            </div>
+        </div>
+        
+        <div id="recuerdo" class="scene" data-bg="url('imagenes/bg-confesion-lluvia.jpg')">
+            <div class="text-box">
+                <p class="story-text">Después de un silencio responde:</p>
+                <p class="story-text">“A veces... cuando llovía. Cuando escuchaba tu risa en otra persona"</p>
+                <div class="choices-container">
+                    <a href="#beso" class="choice-button" onclick="goToScene('beso')">Le pide que la acompañe</a>
+                    <a href="#retirar" class="choice-button" onclick="goToScene('retirar')">Se levanta y se despide</a>
+                </div>
+            </div>
+        </div>
 
-<!-- Esperar a que hable -->
-<div id="esperar" class="scene">
-  <h2>Esperar</h2>
-  <p>Lucía guarda silencio. Julián habla sobre Sofía.</p>
-  <div class="opts">
-    <button onclick="show('culpar')">Culparlo</button>
-    <button onclick="show('escuchar')">Escuchar</button>
-    <button onclick="back()">Volver</button>
-  </div>
-</div>
+        <div id="retirar" class="scene" data-bg="url('imagenes/bg-dejar-dinero.jpg')">
+            <div class="text-box">
+                <p class="story-text">Lucía deja el dinero sobre la mesa.</p>
+                <p class="story-text">”Cuidate, Julián”</p>
+                <p class="story-text">”Vos también”</p>
+                <div class="choices-container">
+                    <a href="#semifinal" class="choice-button" onclick="goToScene('semifinal')">Continuar</a>
+                </div>
+            </div>
+        </div>
 
-<div id="culpar" class="scene">
-  <h2>Culpar</h2>
-  <p><em>LUCÍA:</em> ¡Fue tu culpa!<br><em>JULIÁN:</em> No… por favor.</p>
-  <p>Las luces se apagan. Todo se vuelve negro.</p>
-  <div class="opts">
-    <button onclick="show('habitacion')">Continuar → Despertar</button>
-  </div>
-</div>
+        <div id="interrumpir" class="scene" data-bg="url('imagenes/bg-corriendo-lluvia.jpg')">
+            <div class="text-box">
+                <p class="story-text">Lucía sale corriendo del café, abajo de la lluvia.</p>
+                <div class="choices-container">
+                    <a href="#semifinal" class="choice-button" onclick="goToScene('semifinal')">Continuar</a>
+                </div>
+            </div>
+        </div>
 
-<div id="escuchar" class="scene">
-  <h2>Escuchar</h2>
-  <p><em>JULIÁN:</em> Sofía tuvo un accidente viniendo a verme.<br><em>LUCÍA:</em> No te odio.</p>
-  <p>Se abrazan. El ruido del café desaparece.</p>
-  <div class="opts">
-    <button onclick="show('habitacion')">Continuar → Despertar</button>
-  </div>
-</div>
+        <div id="hablar" class="scene" data-bg="url('imagenes/bg-accidente-noticia.jpg')">
+            <div class="text-box">
+                <p class="story-text">Julián respira hondo.</p>
+                <p class="story-text">“Sofía tuvo un accidente hace dos meses. Venía de ver uno de mis shows. El auto... no frenó”</p>
+                <div class="choices-container">
+                    <a href="#interrumpir" class="choice-button" onclick="goToScene('interrumpir')">Le grita y lo culpa</a>
+                    <a href="#escuchar" class="choice-button" onclick="goToScene('escuchar')">Lo escucha</a>
+                </div>
+            </div>
+        </div>
 
-<!-- Escenas adicionales que aparecen en el mapa original (opcional) -->
-<div id="pregunta" class="scene">
-  <h2>Pregunta directa</h2>
-  <p>Lucía pregunta si él extrañó alguna vez. Él responde con duda.</p>
-  <div class="opts">
-    <button onclick="show('habitacion')">Continuar → Despertar</button>
-    <button onclick="back()">Volver</button>
-  </div>
-</div>
+        <div id="escuchar" class="scene" data-bg="url('imagenes/bg-abrazo-tristeza.jpg')">
+            <div class="text-box">
+                <p class="story-text">Lucía lo escucha, llorando.</p>
+                <p class="story-text">“No fue tu culpa”</p>
+                <div class="choices-container">
+                    <a href="#semifinal" class="choice-button" onclick="goToScene('semifinal')">Continuar</a>
+                </div>
+            </div>
+        </div>
 
-<!-- Nodo final: habitación blanca (despertar) -->
-<div id="habitacion" class="scene">
-  <h2>Habitación blanca — Despertar</h2>
-  <p>Oscuridad. Pitido. Luz blanca. Lucía abre los ojos. Está sujeta. Un chaleco la limita.</p>
-  <p>Una voz dice: "Dale, tomá tus pastillas".</p>
-  <p>Lucía ve a Julián mirándola fijamente y repitiendo su nombre.</p>
-  <div class="opts">
-    <button onclick="restart()">Reiniciar demo</button>
-  </div>
-  <p class="note">Este es el "fin real": todo lo anterior era alucinación / recuerdo.</p>
-</div>
+        <div id="semifinal" class="scene" data-bg="url('imagenes/bg-mareo-vision.jpg')">
+            <div class="text-box">
+                <p class="story-text">Lucía se marea dejándola ciega por un segundo.</p>
+                <p class="story-text">Cuando se compone, ve a Julián mirándola fijamente y repitiendo su nombre repetidas veces.</p>
+                <div class="choices-container">
+                    <a href="#final" class="choice-button" onclick="goToScene('final')">Siguiente</a>
+                </div>
+            </div>
+        </div>
 
-<script>
-  // Funciones mínimas para manejar escenas
-  function show(id) {
-    document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
-    const el = document.getElementById(id);
-    if (el) el.classList.add('active');
-    window.scrollTo(0,0);
-  }
-  function back() {
-    // Volver al inicio para simplicidad; podés mejorar guardando historial
-    show('inicio');
-  }
-  function restart() {
-    show('inicio');
-  }
-</script>
+        <div id="final" class="scene" data-bg="url('imagenes/bg-cuarto-blanco-hospital.jpg')">
+            <div class="text-box final-text">
+                <h2 style="color: #ff9999; margin-top: 0;">FINAL</h2>
+                <p class="story-text">Lucía despierta en un cuarto blanco que te ciega.</p>
+                <p class="story-text">Su movibilidad limitada por ese incómodo chaleco de fuerza.</p>
+                <p class="story-text">La voz que pronunciaba su nombre remata:</p>
+                <p class="story-text">**“Dale, tomá tus pastillas”**</p>
+                <div class="choices-container">
+                    <a href="#inicio" class="choice-button" onclick="goToScene('inicio')">Volver a empezar</a>
+                </div>
+            </div>
+        </div>
 
+    </div>
+
+    <script src="script.js"></script>
 </body>
-</html>
