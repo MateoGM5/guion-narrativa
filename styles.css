@@ -1,0 +1,100 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Oculta el scroll, solo una escena a la vez */
+    font-family: 'Georgia', serif; /* Fuente clásica y elegante */
+    color: #f0f0f0;
+}
+
+/* 💡 ESPACIO PARA LA IMAGEN DE FONDO 💡 */
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out; /* Transición suave para el fondo */
+    z-index: 1;
+}
+
+#game-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10; /* Se asegura que el contenido esté sobre el fondo */
+    pointer-events: none; /* Permite clicks a través del wrapper, solo los elementos activos responden */
+}
+
+.scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; /* Por defecto, todas las escenas están ocultas */
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    pointer-events: none; /* Desactiva interacción por defecto */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.scene.active {
+    display: flex; /* La escena activa se muestra */
+    opacity: 1;
+    pointer-events: auto; /* Habilita interacción solo para la escena activa */
+}
+
+.text-box {
+    width: 90%;
+    max-width: 650px;
+    background: rgba(10, 10, 10, 0.9); /* Fondo oscuro semitransparente */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 50px;
+}
+
+.story-text {
+    font-size: 1.15em;
+    margin: 0;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.choices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.choice-button {
+    display: block;
+    text-align: center;
+    padding: 12px 20px;
+    background-color: rgba(74, 144, 226, 0.85); /* Azul sofisticado */
+    color: white;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.choice-button:hover {
+    background-color: #3a7dc9;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.final-text {
+    text-align: center;
+}
